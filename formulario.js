@@ -1,20 +1,20 @@
-var formulario = document.querySelector("#form")
+var boton = document.querySelector("#form");//se modifica para que se seleccione el boton y no el formulario
 
-formulario.onsubmit = function(e) {
-
-  e.prevent();
+boton.onclick = function(ed) {//se cambia la referencia a boton y el onsubmit a onclick para que haga referencia a cuando se da click al boton y no al formulario
+  ed.preventDefault();//se cambiuo el nombre de e a ed para no afectar las variables internas y para que el formulario no haga que se reinicie la pagina al darle click al boton.
+  formulario = document.querySelector("#formulario");//se agrega para que se obtengan los datos del formulario
   
-  var n = formulario.elements[0]
-  var e = formulario.elements[1]
-  var na = formulario.elements[2]
+  var n = formulario.elements[0];
+  var e = formulario.elements[1];
+  var na = formulario.elements[2];
 
-  var nombre = n.value
-  var edad = e.value
+  var nombre = n.value;
+  var edad = e.value;
 
-  var i = na.selectedIndex
-  var nacionalidad = na.options[i].value
-  console.log(nombre, edad)
-  console.log(nacionalidad)
+  var i = na.selectedIndex;
+  var nacionalidad = na.options[i].value;
+  console.log(nombre, edad);
+  console.log(nacionalidad);
 
   if (nombre.length === 0) {
     n.classList.add("error")
@@ -23,18 +23,16 @@ formulario.onsubmit = function(e) {
     e.classList.add("error")
   }
 
-if (nombre.length > 0 
-  && (edad > 18 
-    && edad < 120) ) {
-  agregarInvitado(nombre, edad, nacionalidad)
+if (nombre.length > 0 && (edad > 18 && edad < 120) ) {//se arreglan los saltos de linea para que sea mas comprensible y se eviten errores
+  agregarInvitado(nombre, edad, nacionalidad);
   }
 }
 
-var botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-var corteLinea = document.createElement("br")
-document.body.appendChild(corteLinea)
+var botonBorrar = document.createElement("button");
+botonBorrar.textContent = "Eliminar invitado";
+botonBorrar.id = "boton-borrar";
+var corteLinea = document.createElement("br");
+document.body.appendChild(corteLinea);
 document.body.appendChild(botonBorrar);
 
 function agregarInvitado(nombre, edad, nacionalidad) {
@@ -52,46 +50,39 @@ function agregarInvitado(nombre, edad, nacionalidad) {
     nacionalidad = "Peruana"
   }
 
-var lista = document.getElementById("lista-de-invitados")
+var lista = document.getElementById("lista-de-invitados");
 
-var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
-lista.appendChild(elementoLista)
+var elementoLista = document.createElement("div");
+elementoLista.classList.add("elemento-lista");
+lista.appendChild(elementoLista);
 
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
 
-function crearElemento(descripcion, valor) {
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = descripcion + ": "
-inputNombre.value = valor 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+
+function crearElemento(descripcion, valor) {//se eliminan las lineas duplicadas que no sirven
+var spanNombre = document.createElement("span");
+var inputNombre = document.createElement("input");
+var espacio = document.createElement("br");
+spanNombre.textContent = descripcion + ": ";
+inputNombre.value = valor ;
+elementoLista.appendChild(spanNombre);
+elementoLista.appendChild(inputNombre);
+elementoLista.appendChild(espacio);
 }
 
-crearElemento("Nombre", nombre)
-crearElemento("Edad", edad)
-crearElemento("Nacionalidad", nacionalidad)
+crearElemento("Nombre", nombre);
+crearElemento("Edad", edad);
+crearElemento("Nacionalidad", nacionalidad);
 
 
-var botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-var corteLinea = document.createElement("br")
-elementoLista.appendChild(corteLinea)
+var botonBorrar = document.createElement("button");
+botonBorrar.textContent = "Eliminar invitado";
+botonBorrar.id = "boton-borrar";
+var corteLinea = document.createElement("br");
+elementoLista.appendChild(corteLinea);
 elementoLista.appendChild(botonBorrar);
 
  botonBorrar.onclick = function() {
 // this.parentNode.style.display = 'none';
-botonBorrar.parentNode.remove()
+botonBorrar.parentNode.remove();
   }
 }
