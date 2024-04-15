@@ -17,10 +17,16 @@ boton.onclick = function(ed) {//se cambia la referencia a boton y el onsubmit a 
   console.log(nacionalidad);
 
   if (nombre.length === 0) {
-    n.classList.add("error")
+    n.classList.add("error");
+  }
+  else{
+    n.classList.remove("error");//se agrega para evitar que se quede en rojo si sale un error una vez
   }
   if (edad < 18 || edad > 120) {
-    e.classList.add("error")
+    e.classList.add("error");
+  }
+  else{
+    e.classList.remove("error");//misma razon linea 23
   }
 
 if (nombre.length > 0 && (edad > 18 && edad < 120) ) {//se arreglan los saltos de linea para que sea mas comprensible y se eviten errores
